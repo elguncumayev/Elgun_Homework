@@ -16,7 +16,6 @@ public class Homework2 {
         Exception exception = new Exception();
         Scanner scan = new Scanner(System.in);
         char[][] board = new char[6][6];
-        //creating board
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
                 if(i==0){
@@ -30,7 +29,6 @@ public class Homework2 {
                 }
             }
         }
-        //random target position
         int targetx = (int) (Math.random()*(5)+1);
         int targety = (int) (Math.random()*(5)+1);
         System.out.println("All set. Get ready to rumble!");
@@ -80,12 +78,4 @@ public class Homework2 {
         }
         System.out.println("You have won!");
     }
-
 }
-/*
-for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 6; j++) {
-                System.out.printf("%c ",board[i][j]);
-            }
-            System.out.println();
-        } */
