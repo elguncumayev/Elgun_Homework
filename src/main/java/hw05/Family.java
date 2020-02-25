@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class Family {
   private Human mother;
   private Human father;
-  private Human[] children;
+  private Human[] children = new Human[0];
   private Pet pet;
 
   public Human getMother() {
@@ -40,7 +40,7 @@ public class Family {
   public void addChild(Human child) {
     int childrenArraySize = this.children.length;
     Human[] newChildren = new Human[childrenArraySize + 1];
-    System.arraycopy(this.children, 0, newChildren, 0, newChildren.length - 1);
+    System.arraycopy(this.children, 0, newChildren, 0, childrenArraySize);
     newChildren[childrenArraySize] = child;
     this.children = newChildren;
     child.setFamily(this);
@@ -50,8 +50,8 @@ public class Family {
     int childrenArraySize = this.children.length;
     Human[] newChildren = new Human[childrenArraySize - 1];
     int indexForNew = 0;
-    for (Human child1 : this.children){
-      if(!(child1 == child)){
+    for (Human child1 : this.children) {
+      if (!(child1 == child)) {
         newChildren[indexForNew] = child;
         indexForNew++;
       }

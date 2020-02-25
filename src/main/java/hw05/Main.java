@@ -12,7 +12,7 @@ public class Main {
 
     Human oliviaSmith = new Human("Olivia", "Smith", 1996);
 
-    Pet davidDog = new Pet("Dog","Rocky",4,48,new String[]{"run", "play"});
+    Pet davidDog = new Pet("Dog", "Rocky", 4, 48, new String[]{"run", "play"});
     String[][] davidSchedule = {{"Sunday", "do homework"}, {"Monday", "go to course"}};
     Human davidSmith = new Human("David", "Smith", smiths, 1998, 88, davidSchedule, davidDog);
 
