@@ -90,13 +90,4 @@ public class Pet {private String species;
                 this.age == that.age &&
                 this.trickLevel == that.trickLevel;
     }
-    //    private String nickname;
-//    private int age;
-//    private int trickLevel;
-//    private String[] habits;
-
-//       if (o == this) return true;
-//    if (!(o instanceof Human)) {
-//        return false;
-//    }
 }
