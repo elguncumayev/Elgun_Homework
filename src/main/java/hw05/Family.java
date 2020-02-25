@@ -1,11 +1,12 @@
 package hw05;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Family {
   private Human mother;
   private Human father;
-  private ArrayList<Human> children = new ArrayList<Human>();
+  private Human[] children;
   private Pet pet;
 
   public Human getMother() {
@@ -32,48 +33,64 @@ public class Family {
     this.pet = pet;
   }
 
-  public ArrayList<Human> getChildren() {
+  public Human[] getChildren() {
     return this.children;
   }
 
   public void addChild(Human child) {
-    this.children.add(child);
+    int childrenArraySize = this.children.length;
+    Human[] newChildren = new Human[childrenArraySize + 1];
+    System.arraycopy(this.children, 0, newChildren, 0, newChildren.length - 1);
+    newChildren[childrenArraySize] = child;
+    this.children = newChildren;
     child.setFamily(this);
   }
-  public void deleteChild(Human child){
-    this.children.remove(child);
+
+  public void deleteChild(Human child) {
+    int childrenArraySize = this.children.length;
+    Human[] newChildren = new Human[childrenArraySize - 1];
+    int indexForNew = 0;
+    for (Human child1 : this.children){
+      if(!(child1 == child)){
+        newChildren[indexForNew] = child;
+        indexForNew++;
+      }
+    }
+    this.children = newChildren;
     child.deleteFromFamily();
   }
+
   public Family(Human father, Human mother) {
     this.father = father;
     this.mother = mother;
   }
-  public int countFamily(){
-    return 2+this.getChildren().size();
+
+  public int countFamily() {
+    return 2 + this.getChildren().length;
   }
 
   @Override
   public String toString() {
     return String.format("Father{%s}\nMother{%s}\nChildren{%s}\nPet{%s}",
-            this.father.toString(),this.mother.toString(),this.children.toString(),this.pet.toString());
+            this.father.toString(), this.mother.toString(), Arrays.toString(this.children), this.pet.toString());
   }
 
   @Override
   public int hashCode() {
     int result = 19;
-    result = result*13 + this.father.hashCode();
-    result = result*13 + this.mother.hashCode();
-    result = result*13 + this.children.hashCode();
-    return  result;
+    result = result * 13 + this.father.hashCode();
+    result = result * 13 + this.mother.hashCode();
+    result = result * 13 + Arrays.hashCode(this.children);
+    return result;
   }
 
   @Override
   public boolean equals(Object obj) {
-    if(obj == this) return  true;
-    if(!(obj instanceof Family)) return false;
+    if (obj == this) return true;
+    if (!(obj instanceof Family)) return false;
     Family that = (Family) obj;
     return this.mother.equals(that.mother) &&
             this.father.equals(that.father) &&
-            this.children.equals(that.children);
+            Arrays.equals(this.children, that.children);
   }
 }

@@ -10,24 +10,21 @@ public class Main {
 
     Family smiths = new Family(johnSmith, aliceSmith);
 
-    Pet oliviaCat = new Pet("Cat", "Puffy");
     Human oliviaSmith = new Human("Olivia", "Smith", 1996);
 
-    Pet davidDog = new Pet();
+    Pet davidDog = new Pet("Dog","Rocky",4,48,new String[]{"run", "play"});
     String[][] davidSchedule = {{"Sunday", "do homework"}, {"Monday", "go to course"}};
     Human davidSmith = new Human("David", "Smith", smiths, 1998, 88, davidSchedule, davidDog);
+
     System.out.println(oliviaSmith.getFamily());
     smiths.addChild(oliviaSmith);
     smiths.addChild(davidSmith);
     System.out.println(smiths.countFamily());
+
     smiths.deleteChild(oliviaSmith);
     System.out.println(smiths.countFamily());
+
     System.out.println(oliviaSmith.getFamily());
-    davidDog.setSpecies("Dog");
-    davidDog.setNickname("Rocky");
-    davidDog.setAge(4);
-    davidDog.setTrickLevel(48);
-    davidDog.setHabits(new String[]{"run", "play"});
     System.out.println(davidSmith.toString());
     davidSmith.greetPet();
     davidSmith.describePet();
