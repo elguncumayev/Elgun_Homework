@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class HappyFamilyTest {
+class Homework6Test {
   private Human father, mother, child1, child2;
   private Pet pet1, pet2, pet3, pet4;
   private Family fm1;
