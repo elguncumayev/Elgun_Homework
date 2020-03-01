@@ -5,5 +5,9 @@ public enum Species {
   DOG,
   BIRD,
   FISH,
-  HEDGEHOGS,
+  HEDGEHOGS;
+
+  static String name(Species name){
+    return name.toString();
+  }
 }

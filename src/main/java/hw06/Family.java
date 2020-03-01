@@ -38,10 +38,9 @@ public class Family {
 
   //changing addChild method type void to boolean to fulfill the task
   public boolean addChild(Human child) {
-    if(child.getName() == null || child.getSurname() == null || child.getFamily() == null ){
-      return  false;
-    }
-    else {
+    if (child.getName() == null || child.getSurname() == null) {
+      return false;
+    } else {
       int childrenArraySize = this.children.length;
       Human[] newChildren = new Human[childrenArraySize + 1];
       System.arraycopy(this.children, 0, newChildren, 0, childrenArraySize);
@@ -54,38 +53,40 @@ public class Family {
 
   public boolean deleteChild(Human child) {
     int childrenArraySize = this.children.length;
-    if(childrenArraySize == 0){
+    if (childrenArraySize == 0) {
       return false;
     }
+    boolean contain = false;
+    for (Human ch : this.children) {
+      if (ch.equals(child)) {
+        contain = true;
+        break;
+      }
+    }
+    if (!contain) return false;
     Human[] newChildren = new Human[childrenArraySize - 1];
     int indexForNew = 0;
-    boolean contain = false;
     for (Human child1 : this.children) {
       if (!(child1.equals(child))) {
         newChildren[indexForNew] = child;
         indexForNew++;
-      } else contain = true;
-    }
-    if (!contain) {
-      //input does not match any element of array and array was not changed
-      return false;
-    } else {
-      this.children = newChildren;
-      child.deleteFromFamily();
-      return true;
+      }
     }
 
+    this.children = newChildren;
+    child.deleteFromFamily();
+    return true;
   }
-  public boolean deleteChild(int index){
-    int childrenArraySize = this.children.length;
-    Human[] newChildren = new Human[childrenArraySize - 1];
-    int indexForNew = 0;
-    boolean contain = true;
 
-    if(index >= childrenArraySize || index <= 0){
-      return  false;
+  public boolean deleteChild(int index) {
+    int childrenArraySize = this.children.length;
+    if (index >= childrenArraySize || index <= 0) {
+      return false;
     }
     else {
+      Human[] newChildren = new Human[childrenArraySize - 1];
+      int indexForNew = 0;
+      boolean contain = true;
       for (int i = 0; i < childrenArraySize; i++) {
         if (i != index) {
           newChildren[indexForNew] = this.children[i];
@@ -97,6 +98,7 @@ public class Family {
       return true;
     }
   }
+
   public Family(Human father, Human mother) {
     this.father = father;
     this.mother = mother;

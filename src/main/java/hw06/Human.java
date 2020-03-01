@@ -61,17 +61,15 @@ public class Human {
   public Human() {
   }
 
-  public Human(String name, String surname,Family family, int dateOfBirth) {
+  public Human(String name, String surname, int dateOfBirth) {
     this.setName(name);
     this.setSurname(surname);
     this.setDateOfBirth(dateOfBirth);
-    this.family = family;
   }
 
-  public Human(String name, String surname, Family family,int dateOfBirth, int iqLevel, String[][] schedule,Pet pet) {
+  public Human(String name, String surname,int dateOfBirth, int iqLevel, String[][] schedule,Pet pet) {
     this.name = name;
     this.surname = surname;
-    this.family = family;
     this.dateOfBirth = dateOfBirth;
     this.iqLevel = iqLevel;
     this.schedule = schedule;
