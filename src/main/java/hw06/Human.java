@@ -61,10 +61,11 @@ public class Human {
   public Human() {
   }
 
-  public Human(String name, String surname, int dateOfBirth) {
+  public Human(String name, String surname,Family family, int dateOfBirth) {
     this.setName(name);
     this.setSurname(surname);
     this.setDateOfBirth(dateOfBirth);
+    this.family = family;
   }
 
   public Human(String name, String surname, Family family,int dateOfBirth, int iqLevel, String[][] schedule,Pet pet) {
@@ -116,6 +117,6 @@ public class Human {
   }
   @Override
   protected void finalize(){
-    System.out.printf("Object is deleted: %s",this.getClass());
+    System.out.printf("Object is deleted: %s\n",this.getClass());
   }
 }
