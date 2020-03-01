@@ -70,7 +70,7 @@ class Homework7Test {
     assertEquals(expected,actual);
   }
   @Test
-  void testCountFamil(){
+  void testCountFamily(){
     fm1.addChild(child1);
     fm1.addChild(child2);
     int expected = 4;
