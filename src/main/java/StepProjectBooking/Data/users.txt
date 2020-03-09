@@ -1,0 +1,6 @@
+1|Tyler|Simpson|male|29
+2|Jim|Trump|male|25
+3|Kyle|Mercedes|female|23
+4|Elgun|Cumayev|male|20
+5|Gunel|Mammadli|female|21
+6|Ferid|Akifzade|male|22
