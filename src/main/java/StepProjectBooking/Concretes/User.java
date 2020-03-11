@@ -22,6 +22,4 @@ public class User implements Serializable {
     String[] splitted = line.split(":");
     return new User(splitted[1], splitted[2], splitted[3], Integer.parseInt(splitted[4]));
   }
-
-
 }

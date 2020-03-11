@@ -1,7 +1,6 @@
 package StepProjectBooking.Controller;
 
 import StepProjectBooking.Concretes.Passenger;
-import StepProjectBooking.Concretes.User;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -19,6 +18,7 @@ public class BookingAPP {
         case "1":
           cc.println(controller.allFlightsInfo());
           break;
+
         case "2":
           cc.println("Enter the flight ID: ");
           int Id = Integer.parseInt(cc.input());
@@ -28,19 +28,25 @@ public class BookingAPP {
           String city;
           LocalDate date;
           int numOfPeople;
+
           cc.println("City: ");
           city = cc.input();
+
           cc.println("Date (YYYY-MM-DD): ");
           date = LocalDate.parse(cc.input());
+
           cc.println("Number of passengers: ");
           numOfPeople = Integer.parseInt(cc.input());
+
           List<String> flightsFilter = controller.flightsFilter(city, date, numOfPeople);
           if (flightsFilter.isEmpty()) {
             cc.println("No matching flight.");
             break;
           }
+
           cc.println(flightsFilter.toString());
           cc.println("Please enter flight ID or 0 to exit: ");
+
           String choice = cc.input();
           if (choice.equals("0")) {
             break;
@@ -60,6 +66,13 @@ public class BookingAPP {
           break;
 
         case "4":
+          cc.println("Enter your booking ID: ");
+          int bookingID = Integer.parseInt(cc.input());
+          cc.println("Enter your name: ");
+          String passengerName = cc.input();
+          cc.println("Enter your surname: ");
+          String passengerSurname = cc.input();
+          controller.cancelBooking(bookingID,controller.newPassenger(passengerName,passengerSurname));
           break;
         case "5":
 //          System.out.println("Enter name and surname: ");

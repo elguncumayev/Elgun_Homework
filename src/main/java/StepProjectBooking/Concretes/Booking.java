@@ -40,7 +40,6 @@ public class Booking {
     sb.append(this.getID())
             .append("#");
     for (Passenger passenger : this.getPassengerList()) {
-      System.out.println(passenger.getName());
       sb.append(passenger.getName())
               .append(":")
               .append(passenger.getSurname())

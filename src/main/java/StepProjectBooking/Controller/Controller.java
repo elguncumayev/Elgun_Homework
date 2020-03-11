@@ -1,7 +1,6 @@
 package StepProjectBooking.Controller;
 
 import StepProjectBooking.Concretes.Passenger;
-import StepProjectBooking.Concretes.User;
 import StepProjectBooking.Services.Services;
 
 import java.io.FileNotFoundException;
@@ -12,7 +11,7 @@ import java.util.List;
 public class Controller {
   private Services service;
 
-  public Controller() {
+  public Controller() throws FileNotFoundException {
     service = new Services();
   }
 
@@ -43,4 +42,9 @@ throw new IllegalArgumentException("flightByUser not implemented!!!");
   public Passenger newPassenger(String name, String surname) {
     return service.newPassenger(name,surname);
   }
+
+  public void cancelBooking(int id, Passenger passenger){
+    service.cancelBooking(id,passenger);
+  }
+
 }
