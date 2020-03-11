@@ -2,14 +2,12 @@ package StepProjectBooking.DAO;
 
 import StepProjectBooking.Concretes.User;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.List;
+import java.util.Optional;
 
 public class DAOUserFile implements DAO<User> {
-  //private final File file = new File("StepProjectBooking/Data/flightsMainInfo.txt");
+  //private final File file = new File("StepProjectBooking/Data/flights.txt");
 
   public DAOUserFile() {
   }
@@ -22,10 +20,15 @@ public class DAOUserFile implements DAO<User> {
   }
 
   @Override
-  public User getById(int id) {
+  public Optional<User> getById(int id) {
 
 
     throw new IllegalArgumentException("Not implemented");
+  }
+
+  @Override
+  public void saveChanges(User user) {
+
   }
 
   @Override
