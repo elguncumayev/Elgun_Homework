@@ -63,7 +63,7 @@ public class Flight {
     return new Flight(Integer.parseInt(splitted[0]), splitted[1], LocalDateTime.parse(splitted[2]), Integer.parseInt(splitted[3]), Integer.parseInt(splitted[4]));
   }
 
-  public String fileFormat(){
+  public String fileFormat() {
     return String.format("%s;%s;%s;%s;%s", this.getId()
             , this.getDestination()
             , this.getDateTime().toString()

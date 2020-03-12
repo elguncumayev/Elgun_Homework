@@ -7,21 +7,15 @@ import StepProjectBooking.DAO.DAO;
 import StepProjectBooking.DAO.DAOFlightFile;
 import StepProjectBooking.DAO.DAOBookingFile;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Services {
-  private DAO<Flight> daoMain = new DAOFlightFile();
+  private DAO<Flight> daoFlight = new DAOFlightFile();
   //private DAO<User> daoUser = new DAOUserFile();
   private DAO<Booking> daoBooking = new DAOBookingFile();
-
-  public Services() throws FileNotFoundException {
-  }
 
   public String getMenu() {
     StringBuilder sB = new StringBuilder();
@@ -34,34 +28,57 @@ public class Services {
     return sB.toString();
   }
 
-  public List<String> getAllFlightsInfo() throws FileNotFoundException {
-    Collection<Flight> all = daoMain.getAll();
+  public List<String> getAllFlightsInfo() {
+    Collection<Flight> all = daoFlight.getAll();
     return all.stream().map(Flight::represent).collect(Collectors.toList());
   }
 
-  public String getFlightByID(int id) throws FileNotFoundException {
-    return daoMain.getById(id)
+  public String getFlightByID(int id) {
+    return daoFlight.get(id)
             .map(Flight::represent)
             .orElse(String.format("There is not any flight with this ID: %d", id));
   }
 
-  public List<String> searchFlightsAndGet(String city, LocalDate date, int numOfPeople) throws FileNotFoundException {
-    return daoMain.getAll().stream()
-            .filter(flight -> (flight.getDestination().equals(city) && flight.getDate().equals(date) && flight.getEmptySeats() >= numOfPeople))
+  public String getBookingByID(int id) {
+    return daoBooking.get(id)
+            .map(Booking::represent)
+            .orElse(String.format("There is not any booking with this ID: %d", id));
+  }
+
+  public List<String> searchFlightsAndGet(String city, LocalDate date, int numOfPeople) {
+    return daoFlight.getAllBy(flight -> (flight.getDestination().equals(city)
+            && flight.getDate().equals(date)
+            && flight.getEmptySeats() >= numOfPeople))
+            .stream()
             .map(Flight::represent).collect(Collectors.toList());
   }
 
-  public void bookFlight(int id, List<Passenger> passengers) throws IOException {
-    Booking booking = new Booking(id, passengers);
-    daoBooking.saveChanges(booking);
-    daoMain.saveChanges(daoMain.getById(id).orElse(new Flight("Nowhere", LocalDateTime.parse("0001-01-01T00:01"), 0, 0)));
+  public void bookFlight(int flightID, List<Passenger> passengers) {
+    Booking created = new Booking(flightID, passengers);
+    daoBooking.save(created);
+    daoFlight.save(daoFlight.get(flightID).orElseThrow(() -> new RuntimeException("Something went wrong: Services::bookFlight")));
   }
 
   public Passenger newPassenger(String name, String surname) {
     return new Passenger(name, surname);
   }
 
-  public void cancelBooking(int id, Passenger passenger) throws FileNotFoundException {
-      Booking booking = daoBooking.getById(id).orElseThrow(FileNotFoundException::new).getPassengerList().remove(passenger);
+  public void cancelBooking(int id) {
+    Booking booking = daoBooking.get(id).orElseThrow(() -> new RuntimeException("Something went wrong: Services::cancelBooking"));
+    daoBooking.remove(booking);
+    daoFlight.save(daoFlight.get(booking.getFlightID()).orElseThrow(() -> new RuntimeException("Something went wrong: Services::cancelBooking")));
+  }
+
+  public String getBookingsByPassenger(Passenger passenger) {
+    List<String> collected = daoBooking.getAllBy(booking -> (booking.getPassengerList().contains(passenger)))
+            .stream()
+            .map(x -> String.format("%s", x.represent()))
+            .collect(Collectors.toList());
+    if (collected.isEmpty()) {
+      return String.format("There is not any booking in your name: %s %s", passenger.getName(), passenger.getSurname());
+    }
+    StringBuilder sb = new StringBuilder();
+    collected.forEach(x -> sb.append(x).append("\n"));
+    return sb.toString();
   }
 }

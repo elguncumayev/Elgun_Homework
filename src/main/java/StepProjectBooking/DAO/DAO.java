@@ -1,14 +1,19 @@
 package StepProjectBooking.DAO;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public interface DAO<T> {
-  Collection<T> getAll() throws FileNotFoundException;
-  Optional<T> getById(int id) throws FileNotFoundException;
-  void saveChanges(T t) throws IOException;
+  Collection<T> getAll();
+
+  Collection<T> getAllBy(Predicate<T> predicate);
+
+  Optional<T> get(int id);
+
+  void save(T t);
+
   void create();
-  void remove();
+
+  void remove(T t);
 }

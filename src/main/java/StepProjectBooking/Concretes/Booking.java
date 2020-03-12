@@ -1,43 +1,57 @@
 package StepProjectBooking.Concretes;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Booking {
-  private int ID;
+  private int bookingID;
+  private int flightID;
   private List<Passenger> passengerList;
+  private static int counter = 0;
 
-  public Booking(int id,List<Passenger> passengerList){
-    this.ID = id;
+  public Booking(int flightID, List<Passenger> passengerList) {
+    this.bookingID = ++counter;
+    this.flightID = flightID;
     this.passengerList = passengerList;
   }
 
-  public int getID() {
-    return ID;
+  private Booking(int bookingID, int flightID, List<Passenger> passengerList) {
+    this.bookingID = bookingID;
+    this.flightID = flightID;
+    this.passengerList = passengerList;
+  }
+
+  public int getBookingID() {
+    return bookingID;
   }
 
   public List<Passenger> getPassengerList() {
     return passengerList;
   }
 
-  public List<Passenger> union(List<Passenger> that){
-    List<Passenger> passengers = new ArrayList<>(this.getPassengerList());
-    passengers.addAll(that);
-    return passengers;
+  public int getFlightID() {
+    return flightID;
   }
 
-  public static Booking parse(String line){
+  public static Booking parse(String line) {
     String[] splitted = line.split("#");
-    int id = Integer.parseInt(splitted[0]);
-    String[] splitted2 = splitted[1].split(";");
+    int flightID = Integer.parseInt(splitted[0]);
+    int bookingID = Integer.parseInt(splitted[1]);
+    String[] splitted2 = splitted[2].split(";");
     List<Passenger> collected = Arrays.stream(splitted2).map(Passenger::parse).collect(Collectors.toList());
-    return new Booking(id,collected);
+    return new Booking(bookingID, flightID, collected);
   }
-  public String fileFormat(){
+
+  public String represent() {
+    return String.format("%s %s %s", this.getFlightID(), this.getBookingID(), this.getPassengerList());
+  }
+
+  public String fileFormat() {
     StringBuilder sb = new StringBuilder();
-    sb.append(this.getID())
+    sb.append(this.getFlightID())
+            .append("#")
+            .append(this.getBookingID())
             .append("#");
     for (Passenger passenger : this.getPassengerList()) {
       sb.append(passenger.getName())
@@ -48,4 +62,12 @@ public class Booking {
     return sb.toString();
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Booking booking = (Booking) o;
+    return bookingID == booking.bookingID &&
+            flightID == booking.flightID;
+  }
 }
