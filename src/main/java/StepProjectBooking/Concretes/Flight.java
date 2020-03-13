@@ -21,7 +21,7 @@ public class Flight {
     this.date = time.toLocalDate();
   }
 
-  private Flight(int id, String destination, LocalDateTime dateTime, int emptySeats, int allSeats) {
+  public Flight(int id, String destination, LocalDateTime dateTime, int emptySeats, int allSeats) {
     this.destination = destination;
     this.dateTime = dateTime;
     this.allSeats = allSeats;
@@ -55,7 +55,11 @@ public class Flight {
   }
 
   public String represent() {
-    return String.format("%s %s %s %s", this.getId(), this.getDestination(), this.getDateTime(), this.getEmptySeats());
+    return String.format("Flight ID: %s, Destination: %s, Date and Time: %s, Empty seats: %s",
+            this.getId(),
+            this.getDestination(),
+            this.getDateTime(),
+            this.getEmptySeats());
   }
 
   public static Flight parse(String line) {

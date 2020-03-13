@@ -44,7 +44,11 @@ public class Booking {
   }
 
   public String represent() {
-    return String.format("%s %s %s", this.getFlightID(), this.getBookingID(), this.getPassengerList());
+    final int size = this.getPassengerList().toString().length();
+    return String.format("Flight ID: %s; Booking ID: %s; Passengers: %s",
+            this.getFlightID(),
+            this.getBookingID(),
+            this.getPassengerList().toString().substring(1,size-1));
   }
 
   public String fileFormat() {

@@ -21,7 +21,11 @@ public class Controller {
   }
 
   public String allFlightsInfo() {
-    return service.getAllFlightsInfo().toString();
+    return service.getAllFlightsInfo();
+  }
+
+  private String allFlightsIn24HInfo() {
+   return service.getAllFlightsIn24HInfo();
   }
 
   public String flightByID(int id) {
@@ -36,7 +40,7 @@ public class Controller {
     return service.getBookingsByPassenger(passenger);
   }
 
-  public List<String> flightsFilter(String city, LocalDate date, int numOfPeople) {
+  public String flightsFilter(String city, LocalDate date, int numOfPeople) {
     return service.searchFlightsAndGet(city, date, numOfPeople);
   }
 
@@ -53,14 +57,23 @@ public class Controller {
   }
 
   public void case1OP() {
-    cc.println(this.allFlightsInfo());
+    cc.println(this.allFlightsIn24HInfo());
   }
 
   public void case2OP() {
-    cc.println("Enter the flight ID: ");
-    int id = Integer.parseInt(cc.readline());
-    cc.println(this.flightByID(id));
-  }
+    try {
+      cc.println("Enter the flight ID or 0 to exit: ");
+      String choiceOrId = cc.readline();
+      if (choiceOrId.equals("0")) {
+        return;
+      }
+      int id = Integer.parseInt(cc.readline());
+      cc.println(this.flightByID(id));
+    }
+    catch (NumberFormatException numberFormEx) {
+      cc.println("Wrong input. Please try again.");
+    }
+    }
 
   public void case3OP() {
     while (true) {
@@ -74,12 +87,12 @@ public class Controller {
         date = LocalDate.parse(cc.readline());
         cc.println("Number of passengers: ");
         numOfPassengers = Integer.parseInt(cc.readline());
-        List<String> currentList = this.flightsFilter(city, date, numOfPassengers);
+        String currentList = this.flightsFilter(city, date, numOfPassengers);
         if (currentList.isEmpty()) {
           cc.println("No matching flight.");
           return;
         }
-        cc.println(currentList.toString());
+        cc.println(currentList);
         cc.println("Please enter flight ID or 0 to exit: ");
         String choiceOrId = cc.readline();
         if (choiceOrId.equals("0")) {
@@ -100,6 +113,7 @@ public class Controller {
         }
         this.bookingOp(flightID, newPassengers);
         cc.println("The operation successfully completed!");
+        return;
       } catch (DateTimeParseException dateTimeEx) {
         cc.println("Your date input is not in specified order. Please try again.");
       } catch (NumberFormatException numberFormEx) {
@@ -119,6 +133,7 @@ public class Controller {
     }
     this.bookingByID(id);
     if (this.bookingByID(id).substring(0, 24).equals("There is not any booking")) {
+      cc.println(this.bookingByID(id));
       return;
     }
     this.cancelBooking(id);

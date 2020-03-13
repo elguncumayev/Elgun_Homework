@@ -49,15 +49,13 @@ public class DAOFlightFile implements DAO<Flight> {
     List<Flight> collected = this.getAll().stream()
             .map(x -> {
               if (x.getId() == flight.getId()) {
-                return Flight.parse(String.format("%s;%s;%s;%s;%s"
-                        , flight.getId()
-                        , flight.getDestination()
-                        , flight.getDateTime().toString()
-                        , flight.getAllSeats() - hold
-                        , flight.getAllSeats()));
+                return new Flight(flight.getId(),
+                        flight.getDestination(),
+                        flight.getDateTime(),
+                        flight.getAllSeats() - hold,
+                        flight.getAllSeats());
               } else return x;
             }).collect(Collectors.toList());
-
 
       try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File(filename)))) {
       for (Flight flight1 : collected) {

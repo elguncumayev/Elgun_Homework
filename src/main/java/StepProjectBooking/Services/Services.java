@@ -8,6 +8,7 @@ import StepProjectBooking.DAO.DAOFlightFile;
 import StepProjectBooking.DAO.DAOBookingFile;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,9 +29,27 @@ public class Services {
     return sB.toString();
   }
 
-  public List<String> getAllFlightsInfo() {
-    Collection<Flight> all = daoFlight.getAll();
-    return all.stream().map(Flight::represent).collect(Collectors.toList());
+  public String getAllFlightsInfo() {
+    Collection<String> all = daoFlight.getAll()
+            .stream().map(Flight::represent).collect(Collectors.toList());
+    if(all.isEmpty()){
+      return "There is not any flights";
+    }
+    StringBuilder sb = new StringBuilder();
+    all.forEach(x -> sb.append(x).append("\n"));
+    return sb.toString();
+  }
+
+  public String getAllFlightsIn24HInfo() {
+    List<String> collected = daoFlight.getAllBy(x -> x.getDateTime().isBefore(LocalDateTime.now().plusDays(1)))
+            .stream().map(Flight::represent).collect(Collectors.toList());
+
+    if (collected.isEmpty()) {
+      return "There is not any flights in 24 hours";
+    }
+    StringBuilder sb = new StringBuilder();
+    collected.forEach(x -> sb.append(x).append("\n"));
+    return sb.toString();
   }
 
   public String getFlightByID(int id) {
@@ -45,12 +64,19 @@ public class Services {
             .orElse(String.format("There is not any booking with this ID: %d", id));
   }
 
-  public List<String> searchFlightsAndGet(String city, LocalDate date, int numOfPeople) {
-    return daoFlight.getAllBy(flight -> (flight.getDestination().equals(city)
+  public String searchFlightsAndGet(String city, LocalDate date, int numOfPeople) {
+    List<String> collected = daoFlight.getAllBy(flight -> (flight.getDestination().equals(city)
             && flight.getDate().equals(date)
             && flight.getEmptySeats() >= numOfPeople))
             .stream()
             .map(Flight::represent).collect(Collectors.toList());
+
+    if (collected.isEmpty()){
+      return String.format("There is not any flights for you: %s %s %s",city,date,numOfPeople);
+    }
+    StringBuilder sb = new StringBuilder();
+    collected.forEach(x -> sb.append(x).append("\n"));
+    return sb.toString();
   }
 
   public void bookFlight(int flightID, List<Passenger> passengers) {
