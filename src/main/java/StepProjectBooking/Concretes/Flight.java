@@ -55,11 +55,12 @@ public class Flight {
   }
 
   public String represent() {
-    return String.format("Flight ID: %s, Destination: %s, Date and Time: %s, Empty seats: %s",
+    return String.format("Flight ID: %s, Destination: %s, Date and Time: %s, Empty seats: %s, All seats: %s",
             this.getId(),
             this.getDestination(),
             this.getDateTime(),
-            this.getEmptySeats());
+            this.getEmptySeats(),
+            this.getAllSeats());
   }
 
   public static Flight parse(String line) {

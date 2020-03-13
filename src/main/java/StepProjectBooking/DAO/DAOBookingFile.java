@@ -1,6 +1,7 @@
 package StepProjectBooking.DAO;
 
 import StepProjectBooking.Concretes.Booking;
+import StepProjectBooking.Concretes.Passenger;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -38,8 +39,20 @@ public class DAOBookingFile implements DAO<Booking> {
 
   @Override
   public void save(Booking booking) {
+    int lastID = getAll().size();
+    StringBuilder sb = new StringBuilder();
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File(filename), true))) {
-      bw.write(booking.fileFormat());
+      sb.append(booking.getFlightID())
+              .append("#")
+              .append(lastID+1)
+              .append("#");
+      for (Passenger passenger : booking.getPassengerList()) {
+        sb.append(passenger.getName())
+                .append(":")
+                .append(passenger.getSurname())
+                .append(";");
+      }
+      bw.write(String.valueOf(sb));
       bw.write("\n");
     } catch (IOException e) {
       throw new RuntimeException("Something went wrong: Booking::save()");

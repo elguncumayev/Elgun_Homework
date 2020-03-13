@@ -56,6 +56,11 @@ public class Controller {
     service.cancelBooking(id);
   }
 
+
+  private String lastBookinID() {
+    return service.getLastBookingID();
+  }
+
   public void case1OP() {
     cc.println(this.allFlightsIn24HInfo());
   }
@@ -67,7 +72,7 @@ public class Controller {
       if (choiceOrId.equals("0")) {
         return;
       }
-      int id = Integer.parseInt(cc.readline());
+      int id = Integer.parseInt(choiceOrId);
       cc.println(this.flightByID(id));
     }
     catch (NumberFormatException numberFormEx) {
@@ -82,13 +87,13 @@ public class Controller {
         LocalDate date;
         int numOfPassengers;
         cc.println("City: ");
-        city = cc.readline();
+        city = cc.readline().toLowerCase();
         cc.println("Date (YYYY-MM-DD): ");
         date = LocalDate.parse(cc.readline());
         cc.println("Number of passengers: ");
         numOfPassengers = Integer.parseInt(cc.readline());
         String currentList = this.flightsFilter(city, date, numOfPassengers);
-        if (currentList.isEmpty()) {
+        if (currentList.substring(0,23).equals("There is not any flight")) {
           cc.println("No matching flight.");
           return;
         }
@@ -113,6 +118,7 @@ public class Controller {
         }
         this.bookingOp(flightID, newPassengers);
         cc.println("The operation successfully completed!");
+        cc.println(String.format("Your ID is: %s",this.lastBookinID()));
         return;
       } catch (DateTimeParseException dateTimeEx) {
         cc.println("Your date input is not in specified order. Please try again.");

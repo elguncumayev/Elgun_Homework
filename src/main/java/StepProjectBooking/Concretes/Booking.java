@@ -1,17 +1,17 @@
 package StepProjectBooking.Concretes;
 
+import StepProjectBooking.DAO.DAOBookingFile;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Booking {
   private int bookingID;
-  private int flightID;
+  private int flightID = 0;
   private List<Passenger> passengerList;
-  private static int counter = 0;
 
   public Booking(int flightID, List<Passenger> passengerList) {
-    this.bookingID = ++counter;
     this.flightID = flightID;
     this.passengerList = passengerList;
   }
@@ -51,6 +51,14 @@ public class Booking {
             this.getPassengerList().toString().substring(1,size-1));
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Booking booking = (Booking) o;
+    return bookingID == booking.bookingID &&
+            flightID == booking.flightID;
+  }
   public String fileFormat() {
     StringBuilder sb = new StringBuilder();
     sb.append(this.getFlightID())
@@ -64,14 +72,5 @@ public class Booking {
               .append(";");
     }
     return sb.toString();
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Booking booking = (Booking) o;
-    return bookingID == booking.bookingID &&
-            flightID == booking.flightID;
   }
 }

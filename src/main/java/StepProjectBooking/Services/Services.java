@@ -65,7 +65,7 @@ public class Services {
   }
 
   public String searchFlightsAndGet(String city, LocalDate date, int numOfPeople) {
-    List<String> collected = daoFlight.getAllBy(flight -> (flight.getDestination().equals(city)
+    List<String> collected = daoFlight.getAllBy(flight -> (flight.getDestination().toLowerCase().equals(city.toLowerCase())
             && flight.getDate().equals(date)
             && flight.getEmptySeats() >= numOfPeople))
             .stream()
@@ -96,7 +96,11 @@ public class Services {
   }
 
   public String getBookingsByPassenger(Passenger passenger) {
-    List<String> collected = daoBooking.getAllBy(booking -> (booking.getPassengerList().contains(passenger)))
+    Passenger result = new Passenger(passenger.getName().toLowerCase(),passenger.getSurname().toLowerCase());
+    List<String> collected = daoBooking
+            .getAllBy(booking -> (booking.getPassengerList().stream().map(x -> new Passenger(x.getName().toLowerCase(),x.getSurname().toLowerCase()))
+                    .collect(Collectors.toList())
+                    .contains(result)))
             .stream()
             .map(x -> String.format("%s", x.represent()))
             .collect(Collectors.toList());
@@ -106,5 +110,9 @@ public class Services {
     StringBuilder sb = new StringBuilder();
     collected.forEach(x -> sb.append(x).append("\n"));
     return sb.toString();
+  }
+
+  public String getLastBookingID() {
+    return String.valueOf(daoBooking.getAll().size());
   }
 }
