@@ -9,7 +9,23 @@ public class Human {
   private int iqLevel;
   private String[][] schedule;
   private Family family;
-  private Pet pet;
+
+  public Human() {
+  }
+
+  public Human(String name, String surname, int dateOfBirth) {
+    this.setName(name);
+    this.setSurname(surname);
+    this.setDateOfBirth(dateOfBirth);
+  }
+
+  public Human(String name, String surname,int dateOfBirth, int iqLevel, String[][] schedule,Pet pet) {
+    this.name = name;
+    this.surname = surname;
+    this.dateOfBirth = dateOfBirth;
+    this.iqLevel = iqLevel;
+    this.schedule = schedule;
+  }
 
   public String getName() {
     return name;
@@ -47,41 +63,9 @@ public class Human {
   public void setSchedule(String[][] schedule) {
     this.schedule = schedule;
   }
-  public Pet getPet() {
-    return pet;
-  }
-  public void setPet(Pet pet) {
-    this.pet = pet;
-  }
 
   public void deleteFromFamily(){
     this.family = null;
-  }
-
-  public Human() {
-  }
-
-  public Human(String name, String surname, int dateOfBirth) {
-    this.setName(name);
-    this.setSurname(surname);
-    this.setDateOfBirth(dateOfBirth);
-  }
-
-  public Human(String name, String surname,int dateOfBirth, int iqLevel, String[][] schedule,Pet pet) {
-    this.name = name;
-    this.surname = surname;
-    this.dateOfBirth = dateOfBirth;
-    this.iqLevel = iqLevel;
-    this.schedule = schedule;
-    this.pet = pet;
-  }
-
-  public void greetPet(){
-    System.out.printf("Hello, %s.\n", this.pet.getNickname());
-  }
-  public void describePet(){
-    System.out.printf("I have a %s, he is %d years old, he is %s.\n"
-            , this.pet.getSpecies(), this.pet.getAge(), this.pet.getTrickLevel() >50 ? "very sly" : "almost not sly");
   }
 
   public String toString() {

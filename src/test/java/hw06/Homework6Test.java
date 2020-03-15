@@ -18,13 +18,13 @@ class Homework6Test {
     pet4 = new Pet(Species.FISH, "fishnickname", 2, 43, new String[]{"fishhabit1", "fishhabit2"});
     fm1 = new Family(father, mother);
     father = new Human("Father", "Surname", 100, 93,
-            new String[][]{{DayOfWeek.name(DayOfWeek.MONDAY), "fatheractivity1"}, {DayOfWeek.name(DayOfWeek.TUESDAY), "fatheractivity2"}}, pet1);
+            new String[][]{{DayOfWeek.MONDAY.name(), "fatheractivity1"}, {DayOfWeek.TUESDAY.name(), "fatheractivity2"}}, pet1);
     mother = new Human("Mother", "Surname", 101, 92,
-            new String[][]{{DayOfWeek.name(DayOfWeek.WEDNESDAY), "motheractivity1"}, {DayOfWeek.name(DayOfWeek.THURSDAY), "motheractivity2"}}, pet2);
+            new String[][]{{DayOfWeek.WEDNESDAY.name(), "motheractivity1"}, {DayOfWeek.THURSDAY.name(), "motheractivity2"}}, pet2);
     child1 = new Human("Child1", "Surname", 110, 89,
-            new String[][]{{DayOfWeek.name(DayOfWeek.FRIDAY), "child1activity1"}, {DayOfWeek.name(DayOfWeek.SATURDAY), "child1activity2"}}, pet3);
+            new String[][]{{DayOfWeek.FRIDAY.name(), "child1activity1"}, {DayOfWeek.SATURDAY.name(), "child1activity2"}}, pet3);
     child2 = new Human("Child2", "Surname", 112, 88,
-            new String[][]{{DayOfWeek.name(DayOfWeek.SUNDAY), "child2activity1"}, {DayOfWeek.name(DayOfWeek.MONDAY), "child2activity2"}}, pet4);
+            new String[][]{{DayOfWeek.SUNDAY.name(), "child2activity1"}, {DayOfWeek.MONDAY.name(), "child2activity2"}}, pet4);
   }
 
   @Test

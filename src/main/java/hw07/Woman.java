@@ -17,8 +17,8 @@ public final class Woman extends Human {
     System.out.println("A little makeup. Okay, now I look better.");
   }
 
-  @Override
+  /*@Override
   void greetPet() {
     System.out.printf("Hello, %s.\n. You look good.", this.pet.getNickname());
-  }
+  }*/
 }

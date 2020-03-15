@@ -5,8 +5,8 @@ public class Main {
 //    for (int i = 0; i < 5000000; i++) {
 //      Human human = new Human();
 //    }
-    String[][] elgunschedule = new String[][]{{DayOfWeek.name(DayOfWeek.MONDAY), "go to course, write clean code"},
-            {DayOfWeek.name(DayOfWeek.FRIDAY), "rest"}};
+    String[][] elgunschedule = new String[][]{{DayOfWeek.MONDAY.name(), "go to course, write clean code"},
+            {DayOfWeek.FRIDAY.name(), "rest"}};
     Human mother = new Human();
     Human father = new Human();
     Family jumayevs = new Family(father, mother);

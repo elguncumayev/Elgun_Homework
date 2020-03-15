@@ -2,7 +2,7 @@ package hw07;
 
 import java.util.Arrays;
 
-public abstract class Human {
+public class Human {
   protected String name;
   protected String surname;
   protected int dateOfBirth;
@@ -76,11 +76,11 @@ public abstract class Human {
     this.pet = pet;
   }
 
-  abstract void greetPet();
-  public void describePet(){
-    System.out.printf("I have a %s, he is %d years old, he is %s.\n"
-            , this.pet.getSpecies(), this.pet.getAge(), this.pet.getTrickLevel() >50 ? "very sly" : "almost not sly");
-  }
+//  abstract void greetPet();
+//  public void describePet(){
+//    System.out.printf("I have a %s, he is %d years old, he is %s.\n"
+//            , this.pet.getSpecies(), this.pet.getAge(), this.pet.getTrickLevel() >50 ? "very sly" : "almost not sly");
+//  }
 
   public String toString() {
     return String.format("Human{name='%s', surname='%s', year=%d, iq=%d, schedule= %s",

@@ -7,9 +7,5 @@ public enum DayOfWeek {
   WEDNESDAY,
   THURSDAY,
   FRIDAY,
-  SATURDAY;
-
-  static String name(DayOfWeek name){
-    return name.toString();
-    }
+  SATURDAY
   }

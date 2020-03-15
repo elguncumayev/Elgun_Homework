@@ -8,6 +8,12 @@ public class Family {
   private Human[] children;
   private Pet pet;
 
+  public Family(Human father, Human mother) {
+    this.father = father;
+    this.mother = mother;
+    children = new Human[0];
+  }
+
   public Human getMother() {
     return mother;
   }
@@ -86,7 +92,6 @@ public class Family {
     else {
       Human[] newChildren = new Human[childrenArraySize - 1];
       int indexForNew = 0;
-      boolean contain = true;
       for (int i = 0; i < childrenArraySize; i++) {
         if (i != index) {
           newChildren[indexForNew] = this.children[i];
@@ -97,12 +102,6 @@ public class Family {
       this.children = newChildren;
       return true;
     }
-  }
-
-  public Family(Human father, Human mother) {
-    this.father = father;
-    this.mother = mother;
-    children = new Human[0];
   }
 
   public int countFamily() {

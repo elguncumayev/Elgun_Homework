@@ -32,9 +32,6 @@ public class Services {
   public String getAllFlightsInfo() {
     Collection<String> all = daoFlight.getAll()
             .stream().map(Flight::represent).collect(Collectors.toList());
-    if(all.isEmpty()){
-      return "There is not any flights";
-    }
     StringBuilder sb = new StringBuilder();
     all.forEach(x -> sb.append(x).append("\n"));
     return sb.toString();
@@ -44,9 +41,6 @@ public class Services {
     List<String> collected = daoFlight.getAllBy(x -> x.getDateTime().isBefore(LocalDateTime.now().plusDays(1)))
             .stream().map(Flight::represent).collect(Collectors.toList());
 
-    if (collected.isEmpty()) {
-      return "There is not any flights in 24 hours";
-    }
     StringBuilder sb = new StringBuilder();
     collected.forEach(x -> sb.append(x).append("\n"));
     return sb.toString();
@@ -55,13 +49,13 @@ public class Services {
   public String getFlightByID(int id) {
     return daoFlight.get(id)
             .map(Flight::represent)
-            .orElse(String.format("There is not any flight with this ID: %d", id));
+            .orElse("");
   }
 
   public String getBookingByID(int id) {
     return daoBooking.get(id)
             .map(Booking::represent)
-            .orElse(String.format("There is not any booking with this ID: %d", id));
+            .orElse("");
   }
 
   public String searchFlightsAndGet(String city, LocalDate date, int numOfPeople) {
@@ -71,9 +65,6 @@ public class Services {
             .stream()
             .map(Flight::represent).collect(Collectors.toList());
 
-    if (collected.isEmpty()){
-      return String.format("There is not any flights for you: %s %s %s",city,date,numOfPeople);
-    }
     StringBuilder sb = new StringBuilder();
     collected.forEach(x -> sb.append(x).append("\n"));
     return sb.toString();
@@ -104,9 +95,7 @@ public class Services {
             .stream()
             .map(x -> String.format("%s", x.represent()))
             .collect(Collectors.toList());
-    if (collected.isEmpty()) {
-      return String.format("There is not any booking in your name: %s %s", passenger.getName(), passenger.getSurname());
-    }
+
     StringBuilder sb = new StringBuilder();
     collected.forEach(x -> sb.append(x).append("\n"));
     return sb.toString();
