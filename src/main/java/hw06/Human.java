@@ -97,6 +97,15 @@ public class Human {
             that.family.equals(this.family) &&
             that.iqLevel == this.iqLevel;
   }
+  public void greetPet() {
+    System.out.printf("Hello, %s.\n", this.getFamily().getPet().getNickname());
+  }
+
+  public void describePet() {
+    System.out.printf("We have a %s, he is %d years old, he is %s.\n"
+            , this.getFamily().getPet().getNickname(), this.getFamily().getPet().getAge(), this.getFamily().getPet().getTrickLevel() > 50 ? "very sly" : "almost not sly");
+  }
+
   @Override
   protected void finalize(){
     System.out.printf("Object is deleted: %s\n",this.getClass());
