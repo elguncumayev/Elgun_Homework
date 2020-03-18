@@ -1,4 +1,4 @@
-package hw07;
+package hw07.Animal;
 
 public class DomesticCat extends Pet {
   public DomesticCat() {
@@ -15,7 +15,7 @@ public class DomesticCat extends Pet {
     this.species = Species.DOMESTICCAT;
   }
   @Override
-  void respond() {
+  protected void respond() {
     System.out.printf("Hello, owner. I am %s. I miss you!\n", nickname);
   }
   public void foul() {

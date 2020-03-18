@@ -1,5 +1,7 @@
 package hw07;
 
+import hw07.Animal.Pet;
+
 import java.util.Arrays;
 
 public class Human {
@@ -10,6 +12,25 @@ public class Human {
   protected String[][] schedule;
   protected Family family;
   protected Pet pet;
+
+  public Human() {
+  }
+
+  public Human(String name, String surname, int dateOfBirth) {
+    this.setName(name);
+    this.setSurname(surname);
+    this.setDateOfBirth(dateOfBirth);
+  }
+
+  public Human(String name, String surname,int dateOfBirth, int iqLevel, String[][] schedule,Pet pet) {
+    this.name = name;
+    this.surname = surname;
+    this.dateOfBirth = dateOfBirth;
+    this.iqLevel = iqLevel;
+    this.schedule = schedule;
+    this.pet = pet;
+  }
+
 
   public String getName() {
     return name;
@@ -58,29 +79,14 @@ public class Human {
     this.family = null;
   }
 
-  public Human() {
+  public void greetPet() {
+    System.out.printf("Hello, %s.\n", this.getFamily().getPet().getNickname());
   }
 
-  public Human(String name, String surname, int dateOfBirth) {
-    this.setName(name);
-    this.setSurname(surname);
-    this.setDateOfBirth(dateOfBirth);
+  public void describePet() {
+    System.out.printf("We have a %s, he is %d years old, he is %s.\n"
+            , this.getFamily().getPet().getNickname(), this.getFamily().getPet().getAge(), this.getFamily().getPet().getTrickLevel() > 50 ? "very sly" : "almost not sly");
   }
-
-  public Human(String name, String surname,int dateOfBirth, int iqLevel, String[][] schedule,Pet pet) {
-    this.name = name;
-    this.surname = surname;
-    this.dateOfBirth = dateOfBirth;
-    this.iqLevel = iqLevel;
-    this.schedule = schedule;
-    this.pet = pet;
-  }
-
-//  abstract void greetPet();
-//  public void describePet(){
-//    System.out.printf("I have a %s, he is %d years old, he is %s.\n"
-//            , this.pet.getSpecies(), this.pet.getAge(), this.pet.getTrickLevel() >50 ? "very sly" : "almost not sly");
-//  }
 
   public String toString() {
     return String.format("Human{name='%s', surname='%s', year=%d, iq=%d, schedule= %s",

@@ -1,5 +1,7 @@
 package hw07;
 
+import hw07.Animal.Pet;
+
 public final class Woman extends Human {
   public Woman() {
     super();
@@ -17,8 +19,4 @@ public final class Woman extends Human {
     System.out.println("A little makeup. Okay, now I look better.");
   }
 
-  /*@Override
-  void greetPet() {
-    System.out.printf("Hello, %s.\n. You look good.", this.pet.getNickname());
-  }*/
 }

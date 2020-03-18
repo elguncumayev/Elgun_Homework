@@ -1,5 +1,7 @@
 package hw07;
 
+import hw07.Animal.Pet;
+
 public final class Man extends Human {
   public Man() {
     super();
@@ -17,8 +19,4 @@ public final class Man extends Human {
     System.out.println("There was a little problem. I got it.");
   }
 
-  /*@Override
-  void greetPet() {
-    System.out.printf("Hello, %s.\n. What did you do today?", this.pet.getNickname());
-  }*/
 }

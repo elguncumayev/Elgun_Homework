@@ -1,4 +1,4 @@
-package hw07;
+package hw07.Animal;
 
 public class Fish extends Pet {
 
@@ -18,7 +18,12 @@ public class Fish extends Pet {
   }
 
   @Override
-  void respond() {
+  protected void respond() {
     System.out.printf("Hello, owner. I am %s. I miss you!\n", nickname);
+  }
+
+  @Override
+  protected void foul() {
+    System.out.println("I need to cover it up.");
   }
 }

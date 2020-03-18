@@ -1,5 +1,6 @@
 package hw07;
 
+import hw07.Animal.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

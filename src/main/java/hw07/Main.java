@@ -1,16 +1,24 @@
 package hw07;
 
+import hw07.Animal.Dog;
+import hw07.Animal.Pet;
+
 public class Main {
   public static void main(String[] args) {
     Pet dogg = new Pet() {
       @Override
-      void respond() {
+      public void respond() {
         System.out.println("WHat HAppEnS?");
+      }
+
+      @Override
+      protected void foul() {
+
       }
     };
     System.out.println(dogg.species);
-    //String[][] elgunschedule = new String[][]{{DayOfWeek.name(DayOfWeek.MONDAY), "go to course, write clean code"},
-    //        {DayOfWeek.name(DayOfWeek.FRIDAY), "rest"}};
+//    String[][] elgunschedule = new String[][]{{DayOfWeek.name(DayOfWeek.MONDAY), "go to course, write clean code"},
+//            {DayOfWeek.name(DayOfWeek.FRIDAY), "rest"}};
     Human mother = new Woman();
     Human father = new Man();
     Family jumayevs = new Family(father, mother);
