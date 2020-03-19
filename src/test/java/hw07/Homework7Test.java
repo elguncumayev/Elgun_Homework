@@ -18,14 +18,14 @@ class Homework7Test {
     pet3 = new RoboCat("robocatnickname", 1, 65, new String[]{"robocathabit1", "robocathabit2"});
     pet4 = new Fish("fishnickname", 2, 43, new String[]{"fishhabit1", "fishhabit2"});
     fm1 = new Family(father, mother);
-//    father = new Man("Father", "Surname", 100, 93,
-//            new String[][]{{DayOfWeek.name(DayOfWeek.MONDAY), "fatheractivity1"}, {DayOfWeek.name(DayOfWeek.TUESDAY), "fatheractivity2"}}, pet1);
-//    mother = new Woman("Mother", "Surname", 101, 92,
-//            new String[][]{{DayOfWeek.name(DayOfWeek.WEDNESDAY), "motheractivity1"}, {DayOfWeek.name(DayOfWeek.THURSDAY), "motheractivity2"}}, pet2);
-//    child1 = new Man("Child1", "Surname", 110, 89,
-//            new String[][]{{DayOfWeek.name(DayOfWeek.FRIDAY), "child1activity1"}, {DayOfWeek.name(DayOfWeek.SATURDAY), "child1activity2"}}, pet3);
-//    child2 = new Woman("Child2", "Surname", 112, 88,
-//            new String[][]{{DayOfWeek.name(DayOfWeek.SUNDAY), "child2activity1"}, {DayOfWeek.name(DayOfWeek.MONDAY), "child2activity2"}}, pet4);
+    father = new Man("Father", "Surname", 100, 93,
+            new String[][]{{DayOfWeek.MONDAY.name(), "fatheractivity1"}, {DayOfWeek.TUESDAY.name(), "fatheractivity2"}});
+    mother = new Woman("Mother", "Surname", 101, 92,
+            new String[][]{{DayOfWeek.WEDNESDAY.name(), "motheractivity1"}, {DayOfWeek.THURSDAY.name(), "motheractivity2"}});
+    child1 = new Man("Child1", "Surname", 110, 89,
+            new String[][]{{DayOfWeek.FRIDAY.name(), "child1activity1"}, {DayOfWeek.SATURDAY.name(), "child1activity2"}});
+    child2 = new Woman("Child2", "Surname", 112, 88,
+            new String[][]{{DayOfWeek.SUNDAY.name(), "child2activity1"}, {DayOfWeek.MONDAY.name(), "child2activity2"}});
   }
 
   @Test

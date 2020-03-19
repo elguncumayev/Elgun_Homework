@@ -1,12 +1,14 @@
 package hw08;
 
+import hw08.Animal.*;
+import hw08.People.Family;
+import hw08.People.Human;
+import hw08.People.Man;
+import hw08.People.Woman;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -35,10 +37,10 @@ class Homework8Test {
     schedule3.put(DayOfWeek.SATURDAY, new ArrayList<>(Arrays.asList("child1activity3", "child1activity4")));
     schedule4.put(DayOfWeek.SUNDAY, new ArrayList<>(Arrays.asList("child2activity1", "child2activity2")));
     schedule4.put(DayOfWeek.MONDAY, new ArrayList<>(Arrays.asList("child2activity3", "child2activity4")));
-    father = new Man("Father", "Surname", 100, 93, schedule1, pet1);
-    mother = new Woman("Mother", "Surname", 101, 92, schedule2, pet2);
-    child1 = new Man("Child1", "Surname", 110, 89, schedule3, pet3);
-    child2 = new Woman("Child2", "Surname", 112, 88, schedule4, pet4);
+    father = new Man("Father", "Surname", 100, 93, schedule1);
+    mother = new Woman("Mother", "Surname", 101, 92, schedule2);
+    child1 = new Man("Child1", "Surname", 110, 89, schedule3);
+    child2 = new Woman("Child2", "Surname", 112, 88, schedule4);
   }
 
   @Test

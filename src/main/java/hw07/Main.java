@@ -17,8 +17,6 @@ public class Main {
       }
     };
     System.out.println(dogg.species);
-//    String[][] elgunschedule = new String[][]{{DayOfWeek.name(DayOfWeek.MONDAY), "go to course, write clean code"},
-//            {DayOfWeek.name(DayOfWeek.FRIDAY), "rest"}};
     Human mother = new Woman();
     Human father = new Man();
     Family jumayevs = new Family(father, mother);

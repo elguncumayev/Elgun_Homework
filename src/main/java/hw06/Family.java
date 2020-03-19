@@ -91,7 +91,6 @@ public class Family {
     } else {
       Human[] newChildren = new Human[childrenArraySize - 1];
       int indexForNew = 0;
-      boolean contain = true;
       for (int i = 0; i < childrenArraySize; i++) {
         if (i != index) {
           newChildren[indexForNew] = this.children[i];

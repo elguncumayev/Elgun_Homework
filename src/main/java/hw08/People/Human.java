@@ -1,16 +1,35 @@
-package hw08;
+package hw08.People;
 
+import hw08.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Map;
 
-public abstract class Human {
+public class Human {
   protected String name;
   protected String surname;
   protected int dateOfBirth;
   protected int iqLevel;
   protected Map<DayOfWeek, ArrayList<String>> schedule;
   protected Family family;
-  protected Pet pet;
+
+
+  public Human() {
+  }
+
+  public Human(String name, String surname, int dateOfBirth) {
+    this.setName(name);
+    this.setSurname(surname);
+    this.setDateOfBirth(dateOfBirth);
+  }
+
+  public Human(String name, String surname, int dateOfBirth, int iqLevel, Map<DayOfWeek, ArrayList<String>> schedule) {
+    this.name = name;
+    this.surname = surname;
+    this.dateOfBirth = dateOfBirth;
+    this.iqLevel = iqLevel;
+    this.schedule = schedule;
+
+  }
 
   public String getName() {
     return name;
@@ -48,40 +67,11 @@ public abstract class Human {
   public void setSchedule(Map<DayOfWeek, ArrayList<String>> schedule) {
     this.schedule = schedule;
   }
-  public Pet getPet() {
-    return pet;
-  }
-  public void setPet(Pet pet) {
-    this.pet = pet;
-  }
 
   public void deleteFromFamily(){
     this.family = null;
   }
 
-  public Human() {
-  }
-
-  public Human(String name, String surname, int dateOfBirth) {
-    this.setName(name);
-    this.setSurname(surname);
-    this.setDateOfBirth(dateOfBirth);
-  }
-
-  public Human(String name, String surname, int dateOfBirth, int iqLevel, Map<DayOfWeek, ArrayList<String>> schedule, Pet pet) {
-    this.name = name;
-    this.surname = surname;
-    this.dateOfBirth = dateOfBirth;
-    this.iqLevel = iqLevel;
-    this.schedule = schedule;
-    this.pet = pet;
-  }
-
-  abstract void greetPet();
-  public void describePet(){
-    System.out.printf("I have a %s, he is %d years old, he is %s.\n"
-            , this.pet.getSpecies(), this.pet.getAge(), this.pet.getTrickLevel() >50 ? "very sly" : "almost not sly");
-  }
 
   public String toString() {
     return String.format("Human{name='%s', surname='%s', year=%d, iq=%d, schedule= %s",

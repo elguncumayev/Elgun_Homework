@@ -10,8 +10,7 @@ public class Main {
     Human mother = new Human();
     Human father = new Human();
     Family jumayevs = new Family(father, mother);
-    Pet dog = new Pet();
-    Human elgun = new Human("Elgun", "Jumayev", 1999, 88, elgunschedule, dog);
+    Human elgun = new Human("Elgun", "Jumayev", 1999, 88, elgunschedule);
     System.out.println(jumayevs.countFamily());
     System.out.println(elgun);
   }

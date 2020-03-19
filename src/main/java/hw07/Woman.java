@@ -1,7 +1,5 @@
 package hw07;
 
-import hw07.Animal.Pet;
-
 public final class Woman extends Human {
   public Woman() {
     super();
@@ -11,8 +9,8 @@ public final class Woman extends Human {
     super(name,surname,dateOfBirth);
   }
 
-  public Woman(String name, String surname, int dateOfBirth, int iqLevel, String[][] schedule, Pet pet) {
-    super(name,surname,dateOfBirth,iqLevel,schedule,pet);
+  public Woman(String name, String surname, int dateOfBirth, int iqLevel, String[][] schedule) {
+    super(name,surname,dateOfBirth,iqLevel,schedule);
   }
 
   public void makeUp(){

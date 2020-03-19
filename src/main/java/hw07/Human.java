@@ -1,7 +1,5 @@
 package hw07;
 
-import hw07.Animal.Pet;
-
 import java.util.Arrays;
 
 public class Human {
@@ -11,7 +9,6 @@ public class Human {
   protected int iqLevel;
   protected String[][] schedule;
   protected Family family;
-  protected Pet pet;
 
   public Human() {
   }
@@ -22,13 +19,13 @@ public class Human {
     this.setDateOfBirth(dateOfBirth);
   }
 
-  public Human(String name, String surname,int dateOfBirth, int iqLevel, String[][] schedule,Pet pet) {
+  public Human(String name, String surname,int dateOfBirth, int iqLevel, String[][] schedule) {
     this.name = name;
     this.surname = surname;
     this.dateOfBirth = dateOfBirth;
     this.iqLevel = iqLevel;
     this.schedule = schedule;
-    this.pet = pet;
+
   }
 
 
@@ -68,12 +65,7 @@ public class Human {
   public void setSchedule(String[][] schedule) {
     this.schedule = schedule;
   }
-  public Pet getPet() {
-    return pet;
-  }
-  public void setPet(Pet pet) {
-    this.pet = pet;
-  }
+
 
   public void deleteFromFamily(){
     this.family = null;

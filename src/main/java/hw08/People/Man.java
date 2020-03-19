@@ -1,5 +1,6 @@
-package hw08;
+package hw08.People;
 
+import hw08.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -12,16 +13,12 @@ public final class Man extends Human {
     super(name,surname,dateOfBirth);
   }
 
-  public Man(String name, String surname, int dateOfBirth, int iqLevel, Map<DayOfWeek, ArrayList<String>> schedule, Pet pet) {
-    super(name,surname,dateOfBirth,iqLevel,schedule,pet);
+  public Man(String name, String surname, int dateOfBirth, int iqLevel, Map<DayOfWeek, ArrayList<String>> schedule) {
+    super(name,surname,dateOfBirth,iqLevel,schedule);
   }
 
   public void repairCar(){
     System.out.println("There was a little problem. I got it.");
   }
 
-  @Override
-  void greetPet() {
-    System.out.printf("Hello, %s.\n. What did you do today?", this.pet.getNickname());
-  }
 }

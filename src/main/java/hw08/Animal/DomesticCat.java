@@ -1,4 +1,4 @@
-package hw08;
+package hw08.Animal;
 
 import java.util.HashSet;
 
@@ -17,7 +17,7 @@ public class DomesticCat extends Pet {
     this.species = Species.DOMESTICCAT;
   }
   @Override
-  void respond() {
+  protected void respond() {
     System.out.printf("Hello, owner. I am %s. I miss you!\n", nickname);
   }
   public void foul() {

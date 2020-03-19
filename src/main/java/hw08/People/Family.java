@@ -1,5 +1,6 @@
-package hw08;
+package hw08.People;
 
+import hw08.Animal.Pet;
 import java.util.*;
 
 public class Family {
@@ -7,6 +8,11 @@ public class Family {
   private Human father;
   private List<Human> children = new ArrayList<>();
   private Set<Pet> pet;
+
+  public Family(Human father, Human mother) {
+    this.father = father;
+    this.mother = mother;
+  }
 
   public Human getMother() {
     return mother;
@@ -60,11 +66,6 @@ public class Family {
     this.children.get(index).deleteFromFamily();
     this.children.remove(index);
     return true;
-  }
-
-  public Family(Human father, Human mother) {
-    this.father = father;
-    this.mother = mother;
   }
 
   public int countFamily() {

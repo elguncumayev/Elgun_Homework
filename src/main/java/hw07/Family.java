@@ -1,7 +1,6 @@
 package hw07;
 
 import hw07.Animal.Pet;
-
 import java.util.Arrays;
 
 public class Family {

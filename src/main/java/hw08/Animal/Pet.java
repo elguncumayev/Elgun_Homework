@@ -1,13 +1,27 @@
-package hw08;
+package hw08.Animal;
 
 import java.util.HashSet;
 
 public abstract class Pet {
-  protected Species species = Species.UNKNOWN;
+  public Species species = Species.UNKNOWN;
   protected String nickname;
   protected int age;
   protected int trickLevel;
   protected HashSet<String> habits = new HashSet<>();
+
+  public Pet() {
+  }
+
+  public Pet(String nickname) {
+    this.nickname = nickname;
+  }
+
+  public Pet(String nickname, int age, int trickLevel, HashSet<String> habits) {
+    this.nickname = nickname;
+    this.age = age;
+    this.trickLevel = trickLevel;
+    this.habits = habits;
+  }
 
   public Species getSpecies() {
     return species;
@@ -49,26 +63,12 @@ public abstract class Pet {
     this.habits = habits;
   }
 
-  public Pet() {
-  }
-
-  public Pet(String nickname) {
-    this.nickname = nickname;
-  }
-
-  public Pet(String nickname, int age, int trickLevel, HashSet<String> habits) {
-    this.nickname = nickname;
-    this.age = age;
-    this.trickLevel = trickLevel;
-    this.habits = habits;
-  }
-
   public void eat() {
     System.out.println("I am eating.");
   }
 
-  abstract void respond();
-
+  protected abstract void respond();
+  protected abstract void foul();
   public String toString() {
     return this.species + "{nickname='" + this.nickname + "', age=" + this.age + ", trickLevel=" + this.trickLevel +
             ", habits=" + this.habits + "}";

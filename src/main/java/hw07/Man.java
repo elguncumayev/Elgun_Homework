@@ -1,7 +1,5 @@
 package hw07;
 
-import hw07.Animal.Pet;
-
 public final class Man extends Human {
   public Man() {
     super();
@@ -11,8 +9,8 @@ public final class Man extends Human {
     super(name,surname,dateOfBirth);
   }
 
-  public Man(String name, String surname, int dateOfBirth, int iqLevel, String[][] schedule, Pet pet) {
-    super(name,surname,dateOfBirth,iqLevel,schedule,pet);
+  public Man(String name, String surname, int dateOfBirth, int iqLevel, String[][] schedule) {
+    super(name,surname,dateOfBirth,iqLevel,schedule);
   }
 
   public void repairCar(){
