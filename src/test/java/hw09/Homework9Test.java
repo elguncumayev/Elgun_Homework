@@ -72,7 +72,7 @@ class Homework9Test {
   void test4(){
     fs.adoptChild(fm1,child1);
     int expected = 3;
-    int actual = fs.getFamilyById(0).countFamily();;
+    int actual = fs.getFamilyById(0).countFamily();
     assertEquals(expected,actual);
   }
   @Test
