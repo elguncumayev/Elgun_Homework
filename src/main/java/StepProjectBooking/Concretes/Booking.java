@@ -1,14 +1,12 @@
 package StepProjectBooking.Concretes;
 
-import StepProjectBooking.DAO.DAOBookingFile;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Booking {
   private int bookingID;
-  private int flightID = 0;
+  private int flightID;
   private List<Passenger> passengerList;
 
   public Booking(int flightID, List<Passenger> passengerList) {
