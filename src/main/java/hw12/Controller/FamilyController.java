@@ -1,6 +1,7 @@
 package hw12.Controller;
 
 import hw12.Animal.Pet;
+import hw12.Exceptions.FamilyOverflowException;
 import hw12.Family.Family;
 import hw12.People.*;
 import hw12.Services.FamilyService;
@@ -154,13 +155,6 @@ public class FamilyController {
     Human father = new Human(fatherName, fatherSurname, formatf, fatherIq);
 
     createNewFamily(father, mother);
-    /**- request for the mother's name
-     - request mother's last name
-     - request mother's birth year
-     - request mother's month of birth
-     - request mother's birthday
-     - request mother's iq
-     */
   }
 
   public void caseOP7() {
@@ -190,6 +184,9 @@ public class FamilyController {
         case "2":
           System.out.println("Enter the family ID: ");
           int idd = Integer.parseInt(scan.nextLine());
+          if(service.getFamilyById(idd).getChildren().size()>6){
+            throw new FamilyOverflowException("Can't adopt children.");
+          }
           System.out.println("What is child's name: ");
           String childName = scan.nextLine();
           System.out.println("What is child's surname: ");
